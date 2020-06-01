@@ -32,59 +32,45 @@ Q = 0.1117  #q=alpha
 def func(x, a, b, c, q):
     return (a * x ** q * (1 - np.exp(-b * x )) + c)
 
-##dummy equations
-##def func(x, a, b, c, q):
-##    return a * (1 - np.exp(-b * x * (c * q)))
-##
-#def dummy(x, q, a, b, c,):
-#    return (q + x) + (a + b) * (x * c)
-
-
 ########### x data
 im = Image.open('Gamma_pw-v3.tif')
 xdata = np.array(im)  
 
 #xdata = xdata[:1000,:1000] #test first n numbers---limiter
 
-#xdata = np.linspace(0.1,5.1,101)  ####### dummy data
-#xdata = np.linspace(0, 4, 50)   ####### dummy data
 
 print("xdata Nan?", np.isnan(xdata).any())   #this prints False
 print("xdata inf", np.isinf(xdata).any())
 
-print("xdata:", xdata)
-print("xdata size:", xdata.size)
-print("xdata shape:", xdata.shape)
+#print("xdata:", xdata)
+#print("xdata size:", xdata.size)
+#print("xdata shape:", xdata.shape)
 
 #print("xdata:", xdata)
-print("xdata.ravel() size:", xdata.ravel().size)
-print("xdata.ravel() shape:", xdata.ravel().shape)
+#print("xdata.ravel() size:", xdata.ravel().size)
+#print("xdata.ravel() shape:", xdata.ravel().shape)
 
 ########## y data
 yout = func(xdata, A, B, C, Q)
 y = np.nan_to_num(yout)
 
-#dummy y data
-#y_noise = 0.2 * np.random.normal(size=xdata.size)
-#ydata = np.linspace(0, -27, 50)
-#y = ydata + y_noise
 
 print("y Nan?", np.isnan(y).any())   #this prints False
 print("y inf", np.isinf(y).any())
 
-print("y:", y)
-print("y size:", y.size)
-print("y shape:", y.shape)
+#print("y:", y)
+#print("y size:", y.size)
+#print("y shape:", y.shape)
 
 #############curve fit
 popt, pcov = curve_fit(func, xdata.ravel(), y.ravel(), maxfev=50000000)
-print("pcov:", pcov)
-print("pcov size:", pcov.size)
-print("pcov shape:", pcov.shape)
+#print("pcov:", pcov)
+#print("pcov size:", pcov.size)
+#print("pcov shape:", pcov.shape)
 
-print("popt:", popt)
-print("popt size:", popt.size)
-print("popt shape:", popt.shape)
+#print("popt:", popt)
+#print("popt size:", popt.size)
+#print("popt shape:", popt.shape)
 
 plt.ion()
 plt.plot(xdata, y,'o')
@@ -113,7 +99,7 @@ plt.legend()
 
 ######################################
 ##output-->save the image
-print("save y output")
+#print("save y output")
 
 #Image.save(fp, format=None, **params)
 #y = y.save("inverted_Backscatter_ytestdata.tiff", format = tiff)
